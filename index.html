@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="PUT_GOOGLE_VERIFICATION_CODE_HERE" />
+
+    <title>Medical Chatbot Architecture — Engineering Documentation</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+
+<div class="container">
+
+<h1>📘 COMPLETE ENGINEERING DOCUMENTATION<br>
+End-to-End Medical Chatbot (RAG System)</h1>
+
+<p class="subtitle">
+A deep, engineering-level explanation of architectural decisions, failures, fixes,
+and the final stable system design.
+</p>
+
+<p class="note">
+This documentation explains technical concepts only and is not an operational or public-facing medical system.
+</p>
+
+<hr>
+
+<!-- SECTION 0 -->
+<h2>SECTION 0 — WHY THIS DOCUMENT EXISTS</h2>
+<div class="important box">
+    <p>This document exists because this project is not a copy-paste tutorial.
+    It documents real engineering problems such as:</p>
+    <ul>
+        <li>Breaking library changes</li>
+        <li>Deployment crashes</li>
+        <li>Memory limitations</li>
+        <li>API mismatches</li>
+        <li>Embedding dimension conflicts</li>
+    </ul>
+</div>
+
+<!-- SECTION 1 -->
+<h2>SECTION 1 — EXPECTATION VS REALITY</h2>
+<div class="info box">
+    <p>The original tutorial workflow:</p>
+    <ul>
+        <li>PDF → embeddings → vector DB → chatbot</li>
+    </ul>
+    <p>However, major ecosystem changes made this workflow unreliable.</p>
+</div>
+
+<div class="danger box">
+    <ul>
+        <li>LangChain APIs changed</li>
+        <li>Pinecone SDK changed</li>
+        <li>Embedding dimensions became strict</li>
+        <li>Free deployment tiers have memory limits</li>
+    </ul>
+</div>
+
+<!-- SECTION 2 -->
+<h2>SECTION 2 — LANGCHAIN BREAKING CHANGES</h2>
+
+<div class="danger box">
+<pre class="code-box">
+retriever.get_relevant_documents()
+StuffDocumentsChain
+create_retrieval_chain()
+</pre>
+<p>These APIs no longer exist in modern LangChain versions.</p>
+</div>
+
+<div class="lesson">
+📌 Lesson: Always check library versions before following tutorials.
+</div>
+
+<!-- SECTION 3 -->
+<h2>SECTION 3 — EMBEDDINGS ARCHITECTURE</h2>
+
+<div class="danger box">
+<p>Local embedding models failed in production due to:</p>
+<ul>
+    <li>High RAM usage</li>
+    <li>Slow cold starts</li>
+    <li>Heavy dependencies</li>
+</ul>
+</div>
+
+<div class="success box">
+<p><strong>Solution:</strong> Use API-based embeddings instead of local inference.</p>
+</div>
+
+<!-- SECTION 4 -->
+<h2>SECTION 4 — NOTEBOOK VS DEPLOYMENT</h2>
+
+<div class="info box">
+<ul>
+    <li>Notebooks allow long execution and high memory</li>
+    <li>Production environments are resource-restricted</li>
+</ul>
+</div>
+
+<div class="lesson">
+📌 Lesson: Notebook success does not guarantee deployment success.
+</div>
+
+<!-- SECTION 5 -->
+<h2>SECTION 5 — FINAL RAG FLOW</h2>
+
+<div class="info box">
+<pre class="code-box">
+PDFs → chunks → embeddings → vector store
+User query → embedding → retrieval → context → LLM → response
+</pre>
+</div>
+
+<!-- SECTION 6 -->
+<h2>SECTION 6 — API KEY RESPONSIBILITIES</h2>
+
+<div class="important box">
+<ul>
+    <li>Pinecone → vector search</li>
+    <li>LLM provider → reasoning</li>
+    <li>Embedding API → vector generation</li>
+</ul>
+</div>
+
+<!-- SECTION 7 -->
+<h2>SECTION 7 — FINAL CONCLUSION</h2>
+
+<div class="success box">
+<p>
+This project demonstrates a real-world, production-aware RAG architecture with
+clear separation of responsibilities and stable deployment design.
+</p>
+</div>
+
+</div>
+
+</body>
+</html>
